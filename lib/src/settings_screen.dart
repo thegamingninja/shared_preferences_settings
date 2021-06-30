@@ -1697,6 +1697,7 @@ class __SettingsModalState extends State<_SettingsModal> {
 class RadioPickerSettingsTile extends StatelessWidget {
   final String settingKey;
   final String title;
+  final Function(String?) onChanged;
   final String? subtitle;
   final Map<String, String> values;
   final String? defaultKey;
@@ -1711,6 +1712,7 @@ class RadioPickerSettingsTile extends StatelessWidget {
     required this.settingKey,
     required this.title,
     required this.values,
+    required this.onChanged,
     this.defaultKey,
     this.subtitle,
     this.icon,
@@ -1747,7 +1749,10 @@ class RadioPickerSettingsTile extends StatelessWidget {
                 title: values[key],
                 value: key,
                 groupValue: value,
-                onChanged: onChanged,
+                onChanged: (String? value) {
+                  this.onChanged(value);
+                  onChanged(value);
+                },
                 enabled: true,
               );
             },
